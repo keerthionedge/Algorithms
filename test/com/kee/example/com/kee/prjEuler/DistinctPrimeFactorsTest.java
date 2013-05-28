@@ -34,6 +34,13 @@ public class DistinctPrimeFactorsTest {
         integers = DistinctPrimeFactors.getPrimes(400);
         Assert.assertEquals(78,integers.length);
         Assert.assertEquals(389,(Object)integers[76]);
+
+        integers = DistinctPrimeFactors.getPrimes(74);
+        int sum =0;
+        for(Integer integer:integers){
+           sum+=integer;
+        }
+        Assert.assertEquals(953,sum);
     }
 
     @Test
