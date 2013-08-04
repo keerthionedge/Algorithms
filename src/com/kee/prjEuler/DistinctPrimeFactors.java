@@ -43,36 +43,39 @@ public class DistinctPrimeFactors {
     public static void main(String[] args) {
         LOGGER.setLevel(Level.INFO);
         PropertyConfigurator.configure("log4j.properties");
-        computeSolution(4,getPrimes(200000));
+        computeSolution(4, getPrimes(200000));
     }
-    private static int getNextEven(int inEvenNumber){ //no check for even here
-        return inEvenNumber+2;
+
+    private static int getNextEven(int inEvenNumber) { //no check for even here
+        return inEvenNumber + 2;
     }
-    private static int getNextEven(int inEvenNumber, boolean inCheckRequired){
-        if(inCheckRequired){
-            if(inEvenNumber%2==0){
+
+    private static int getNextEven(int inEvenNumber, boolean inCheckRequired) {
+        if (inCheckRequired) {
+            if (inEvenNumber % 2 == 0) {
                 return getNextEven(inEvenNumber);
-            } else{
-                return inEvenNumber+1;
+            } else {
+                return inEvenNumber + 1;
             }
         }
         return getNextEven(inEvenNumber);
     }
-    public static Integer[] getPrimes(int inLimit){
+
+    public static Integer[] getPrimes(int inLimit) {
         List<Integer> primesList = new ArrayList<Integer>(1);
         boolean addFlag = true;
         primesList.add(2);
-        for(int i =3; i<=inLimit;){
-            for(Integer integer: primesList){
-                if(i%integer == 0){
+        for (int i = 3; i <= inLimit; ) {
+            for (Integer integer : primesList) {
+                if (i % integer == 0) {
                     addFlag = false;
                     break;
                 }
             }
-            if(addFlag){
+            if (addFlag) {
                 primesList.add(i);
             }
-             i=i+2;
+            i = i + 2;
             addFlag = true;
         }
         return primesList.toArray(new Integer[primesList.size()]);
@@ -103,17 +106,16 @@ public class DistinctPrimeFactors {
                                 productFactor = productFactor * integer;
                             }
                             if (primeFactors.size() == inLength) {
-                                LOGGER.debug("\t\t\t\t\t"+inLength+"\t Prime factors found for "+start+"\t are"+primeFactors);
-                                if (previous + 1 == start){
+                                LOGGER.debug("\t\t\t\t\t" + inLength + "\t Prime factors found for " + start + "\t are" + primeFactors);
+                                if (previous + 1 == start) {
                                     ++consecutives;
-                                    LOGGER.debug("\t\t\t\t\t Number Of consecutives are "+consecutives+"for "+start);
+                                    LOGGER.debug("\t\t\t\t\t Number Of consecutives are " + consecutives + "for " + start);
                                     //if(consecutives >=3)
-                                        LOGGER.info("\t\t\t\t\t the Factors are"+primeFactors+"for "+start);
-                                }
-                                else  {
-                                    consecutives =1;
-                                    LOGGER.debug("\t\t\t\t\t First Item having Factor Found "+consecutives);
-                                    LOGGER.info("\t\t\t\t\t the Factors are"+primeFactors+"for "+start);
+                                    LOGGER.info("\t\t\t\t\t the Factors are" + primeFactors + "for " + start);
+                                } else {
+                                    consecutives = 1;
+                                    LOGGER.debug("\t\t\t\t\t First Item having Factor Found " + consecutives);
+                                    LOGGER.info("\t\t\t\t\t the Factors are" + primeFactors + "for " + start);
                                 }
                                 if (consecutives == inLength) {
                                     return start;
@@ -152,10 +154,10 @@ public class DistinctPrimeFactors {
     }
 
     private static int getNoOfEvenToSelect(int inLength) {
-        if(inLength%2==1){
-            return (inLength/2)+(inLength%2);
-        }else
-            return inLength/2;
+        if (inLength % 2 == 1) {
+            return (inLength / 2) + (inLength % 2);
+        } else
+            return inLength / 2;
     }
 
     public static final Logger LOGGER = Logger.getLogger(DistinctPrimeFactors.class);

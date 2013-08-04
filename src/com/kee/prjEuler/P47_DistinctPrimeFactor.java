@@ -39,6 +39,7 @@ public class P47_DistinctPrimeFactor {
         System.out.println("primes.size() = " + primes.size());
         System.out.println(i - 3);
     }
+
     private static boolean isPrimes(int number, ArrayList<Integer> primes) {
         int sqrt = (int) Math.sqrt(number);
         int i = 0;
@@ -53,6 +54,7 @@ public class P47_DistinctPrimeFactor {
 
         return true;
     }
+
     private static int countFactors(int number, ArrayList<Integer> primes) {
         int i = 0;
         int count = 0;
